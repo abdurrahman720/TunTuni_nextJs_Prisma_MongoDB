@@ -1,42 +1,58 @@
 "use client"
-import useLoginModal from "@/hooks/useLoginModal";
+
 import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import useLoginModal from "@/hooks/useLoginModal";
 
-const LoginModal = () => {
-    const loginModal = useLoginModal();
-    const registerModal = useRegisterModal();
+const RegisterModal = () => {
+    const registerModal = useRegisterModal()
+    const loginModal = useLoginModal()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [userName, setUserName] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const onToggle = useCallback(() => {
         if (isLoading) {
             return;
         }
-        loginModal.onClose()
-        registerModal.onOpen();
-        
+        registerModal.onClose();
+        loginModal.onOpen()
 
     },[isLoading,registerModal,loginModal])
 
-    const onSubmit = useCallback(async() => {
+    const onSubmit = useCallback(async () => {
         try {
             setIsLoading(true)
 
             // setIsLoading(false)
-            loginModal.onClose()
+            registerModal.onClose();
         }
         catch (err) {
             console.log(err)
         }
-    }, [loginModal])
+    }, [registerModal]);
+
+    
     
     const bodyContent = (
         <div className="flex flex-col gap-4">
+             <Input
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                disabled={isLoading}
+            />
+             <Input
+                placeholder="user name"
+                onChange={(e) => setUserName(e.target.value)}
+                value={userName}
+                disabled={isLoading}
+            />
             <Input
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -49,21 +65,22 @@ const LoginModal = () => {
                 value={password}
                 disabled={isLoading}
             />
+           
         </div>
     )
 
     const footerContent = (
         <div className="text-neutral-400 text-center mt-4"> 
-            <p>New on TunTuni?</p>
+            <p>Already have an Account?</p>
             <span onClick={onToggle} className="text-white cursor-pointer hover:text-orange-600 hover:underline">
-               Register
+                Sign In
             </span>
         </div>
     )
 
     return (
-        <Modal disabled={isLoading} isOpen={loginModal.isOpen} title="Login" actionLabel="Sign In" onClose={loginModal.onClose} onSubmit={onSubmit} body={bodyContent} footer={footerContent} />
+        <Modal disabled={isLoading} isOpen={registerModal.isOpen} title="Regiser" actionLabel="Sign Up" onClose={registerModal.onClose} onSubmit={onSubmit} body={bodyContent} footer={footerContent}  />
     );
 };
 
-export default LoginModal;
+export default RegisterModal;
