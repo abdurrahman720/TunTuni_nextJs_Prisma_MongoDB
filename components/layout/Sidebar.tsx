@@ -6,6 +6,7 @@ import SidebarLogo from './SidebarLogo';
 import SidebarItem from './SidebarItem';
 import SidebarTunButton from './SidebarTunButton';
 import useCurrentUser from '@/hooks/useCurrentUser';
+import { signOut } from 'next-auth/react';
 
 const Sidebar = () => {
     const {data: currentUser} = useCurrentUser()
@@ -23,13 +24,15 @@ const Sidebar = () => {
         {
             label: 'Notifications',
             href: '/notifications',
-            icon: BsBellFill
+            icon: BsBellFill,
+            auth: true
         },
         
         {
             label: 'Profile',
             href: '/usres/123',
-            icon: FaUser
+            icon: FaUser,
+            auth:true
         },
        
     ]
@@ -40,12 +43,12 @@ const Sidebar = () => {
                     <SidebarLogo />
                     {
                         menuItems.map((item) => (
-                            <SidebarItem key={item.href} href={item.href} label={item.label} icon={item.icon} />
+                            <SidebarItem key={item.href} href={item.href} label={item.label} icon={item.icon} auth={item.auth} />
                         ))
                     }
                     {
                         currentUser && (
-                            <SidebarItem onClick={() => { }} icon={BiLogOut} label="Logout" />
+                            <SidebarItem onClick={() =>signOut()} icon={BiLogOut} label="Logout" />
                         )
                     }
                     <SidebarTunButton/>
