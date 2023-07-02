@@ -1,10 +1,12 @@
+
 import Sidebar from '@/components/layout/Sidebar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import FollowBar from '@/components/layout/FollowBar'
 import LoginModal from '@/components/modals/LoginModal'
 import RegisterModal from '@/components/modals/RegisterModal'
-// import Modal from '@/components/Modal'
+import { Toaster } from 'react-hot-toast'
+import AuthContext from '@/context/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,14 +16,16 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,
+  children, 
 }: {
-  children: React.ReactNode
-}) {
+    children: React.ReactNode,
+  }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <Modal isOpen title="TunTuni" actionLabel="Submit"/> */}
+        <AuthContext>
+          <Toaster/>
         <LoginModal />
         <RegisterModal/>
         <div className="h-screen bg-black">
@@ -35,6 +39,10 @@ export default function RootLayout({
          </div>
         </div>
         </div>
+        </AuthContext>
+    
+    
+      
       </body>
     </html>
   )

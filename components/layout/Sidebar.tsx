@@ -1,11 +1,14 @@
+"use client"
 import { BsBellFill, BsHouseFill, BsSearch } from 'react-icons/bs'
 import {BiLogOut} from 'react-icons/bi'
 import { FaUser } from 'react-icons/fa';
 import SidebarLogo from './SidebarLogo';
 import SidebarItem from './SidebarItem';
 import SidebarTunButton from './SidebarTunButton';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 const Sidebar = () => {
+    const {data: currentUser} = useCurrentUser()
     const menuItems = [
         {
             label: 'Home',
@@ -40,7 +43,11 @@ const Sidebar = () => {
                             <SidebarItem key={item.href} href={item.href} label={item.label} icon={item.icon} />
                         ))
                     }
-                    <SidebarItem onClick={() => { }} icon={BiLogOut} label="Logout" />
+                    {
+                        currentUser && (
+                            <SidebarItem onClick={() => { }} icon={BiLogOut} label="Logout" />
+                        )
+                    }
                     <SidebarTunButton/>
                 </div>
             </div>

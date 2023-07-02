@@ -4,6 +4,8 @@ import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const LoginModal = () => {
     const loginModal = useLoginModal();
@@ -26,14 +28,20 @@ const LoginModal = () => {
     const onSubmit = useCallback(async() => {
         try {
             setIsLoading(true)
-
-            // setIsLoading(false)
+            console.log({email, password})
+            
+            await signIn('credentials', { email, password })
+            toast.success("Login Successfully")
+          
             loginModal.onClose()
         }
         catch (err) {
             console.log(err)
         }
-    }, [loginModal])
+        finally {
+            setIsLoading(false)
+        }
+    }, [loginModal,email,password])
     
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -45,6 +53,7 @@ const LoginModal = () => {
             />
             <Input
                 placeholder="Password"
+                type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 disabled={isLoading}
