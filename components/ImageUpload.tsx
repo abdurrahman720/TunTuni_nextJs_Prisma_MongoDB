@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import Resizer from "react-image-file-resizer";
 
 interface ImageUploadProps{
     onChange: (base64: string) => void;
@@ -17,18 +18,36 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, label, value, disab
         onChange(base64);
     }, [onChange])
     
-    const handleDrop = useCallback((files: any) => {
-        const file = files[0];
-        const reader = new FileReader();
+    const resizeFile = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      Resizer.imageFileResizer(
+        file,
+        500,
+        500,
+        "JPEG",
+        150,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "base64"
+      );
+    });
 
-        reader.onload = (e: any) => {
-            setBase64(e.target.result)
-            handleChange(e.target.result);
-        }
-
-        reader.readAsDataURL(file)
-
-    }, [handleChange])
+  const handleDrop = useCallback((files: any) => {
+    const file = files[0];
+  
+    const reader = new FileReader();
+  
+    reader.onload = async (e: any) => {
+        const resizedImage = await resizeFile(file);
+        console.log(resizedImage)
+      setBase64(resizedImage);
+      handleChange(resizedImage);
+    };
+  
+    reader.readAsDataURL(file);
+  }, [handleChange]);
     
     const { getRootProps, getInputProps } = useDropzone({
         maxFiles: 1,
