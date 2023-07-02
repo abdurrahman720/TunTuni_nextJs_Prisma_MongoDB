@@ -28,7 +28,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, label, value, disab
         150,
         0,
         (uri) => {
-          resolve(uri);
+          resolve(uri as string);
         },
         "base64"
       );
