@@ -7,3 +7,5 @@ const useUser = (userId: string) => {
     return { data, error, isLoading, mutate }
 }
 export default useUser;
+
+
