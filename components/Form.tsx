@@ -8,7 +8,7 @@ import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import Button from "./Button";
 import Avatar from "./Avatar";
-import { is } from "date-fns/locale";
+
 
 interface FormProps{
     placeholder: string;
