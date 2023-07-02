@@ -18,8 +18,8 @@ model User{
   email String? @unique
   emailVerified DateTime?
   image String?
-  covered String?
-  profile String?
+  coverImage String?
+  profileImage String?
   originalPass String?
   hashedPassword String?
   createdAt DateTime @default(now())

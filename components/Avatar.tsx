@@ -17,14 +17,14 @@ const Avatar: React.FC<AvatarProps> = ({
 
     const onClick = useCallback((event: any) => {
         event.stopPropagation();
-        const url = `/users/${userId}`
+        const url = `/user/${userId}`
         router.push(url)
     }, [userId, router])
     
 
     return (
         <div className={`
-        ${hasBorder ? 'border-4 border-orange-700' : ""}
+        ${hasBorder ? 'border-4 border-orange-500' : ""}
         ${isLarge ? 'w-32 h-32' : 'w-12 h-12'}
         rounded-full
         hover:opacity-90
