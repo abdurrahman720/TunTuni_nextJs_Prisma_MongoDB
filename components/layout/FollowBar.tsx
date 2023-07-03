@@ -1,14 +1,10 @@
 "use client"
 import useUsers from "@/hooks/useUsers"
 import Avatar from "../Avatar";
-// import { useCallback } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const FollowBar = () => {
-    const router = useRouter()
-
-
+   
  const {data: users=[]} = useUsers()
     if (users.length == 0) {
         return null
