@@ -19,7 +19,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
         return list.includes(currentUser?.id)
    },[currentUser?.id, fetchedPost?.likeIds])
 
-    console.log({"hasLiked":hasLiked})
+
   
     const toggleLike = useCallback(async () => {
       if (!currentUser) {
