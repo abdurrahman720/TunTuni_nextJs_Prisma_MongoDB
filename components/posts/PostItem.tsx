@@ -24,7 +24,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     },[router, data.user.id])
 
     const goToPost = useCallback(() => {
-        router.push(`/posts/${data.id}`)
+        router.push(`/post/${data.id}`)
     }, [router, data.id])
     
     const onLike = useCallback((e: any) => {
