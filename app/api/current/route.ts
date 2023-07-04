@@ -4,7 +4,7 @@ import prisma from '@/libs/prismaDb'
 import { authOptions } from "../auth/[...nextauth]/route";
 
 
-export  async function GET(req: Request, res: Response) {
+export async function GET(req: Request, res: Response) {
    
   const session = await getServerSession(authOptions)
   
