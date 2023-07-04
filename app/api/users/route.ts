@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 5;
+
 import { NextResponse } from "next/server";
 
 import prisma from '@/libs/prismaDb'
