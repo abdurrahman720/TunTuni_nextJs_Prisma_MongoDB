@@ -37,7 +37,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 
     return (
         <div onClick={handleClick} className="flex flex-row items-center">
-            <div className="relative rounded-full h-14 w-14 flex items-center justify-center p-4 hover:bg-orange-300 hover:bg-opacity-10 cursor-pointer lg:hidden">
+            <div className="relative rounded-full h-10 w-10 flex items-center justify-center p-1 hover:bg-orange-300 hover:bg-opacity-10 cursor-pointer lg:hidden">
                 <Icon size={28} color='orange'></Icon>
                 {alert ? <BsDot size={70} className="text-orange-500 absolute -top-4"  /> : null}
             </div>
