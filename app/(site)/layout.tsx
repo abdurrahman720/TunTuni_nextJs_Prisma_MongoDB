@@ -8,6 +8,7 @@ import RegisterModal from '@/components/modals/RegisterModal'
 import { Toaster } from 'react-hot-toast'
 import AuthContext from '@/context/AuthContext'
 import EditModal from '@/components/modals/EditModal'
+import PassRestModal from '@/components/modals/PassRestModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,7 +30,8 @@ export default function RootLayout({
           <Toaster />
           <EditModal/>
         <LoginModal />
-        <RegisterModal/>
+          <RegisterModal />
+          <PassRestModal/>
         <div className="h-screen bg-black">
           <div className="container h-full mx-auto xl-px-30 max-w-6xl">
             <div className='grid grid-cols-4 h-full'>
