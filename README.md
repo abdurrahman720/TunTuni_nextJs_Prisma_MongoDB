@@ -23,6 +23,6 @@ This is one of my Full Stack Web Application , build using NextJs 13.2.
 4. User gets notifications on posts likes, comment and follow
 5. Every user has unique username 
 6. User can be searched with username (coming soon...)
-8.  
+ 
 
 
