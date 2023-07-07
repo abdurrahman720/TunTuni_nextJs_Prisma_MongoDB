@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         }
 
         try {
-            const updatedUser = await prisma.user.update({
+            await prisma.user.update({
                 where: {
                     id: user.id,
                 },
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
                 }
             })
             return NextResponse.json({
-                message: "Email Verified Successfully",
+                message: "Password reseted Successfully",
                 success: true
             })
         }
