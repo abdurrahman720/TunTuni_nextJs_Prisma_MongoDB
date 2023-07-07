@@ -4,20 +4,24 @@ import usePassResetModal from "@/hooks/usePassResetModal";
 import Modal from "../Modal";
 import { useCallback, useState } from "react";
 import Input from "../Input";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 
 const PassRestModal = () => { 
-    const {data:user} = useCurrentUser()
+   
     const passResetModal = usePassResetModal();
 
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [isSubmit, setIsSubmit] = useState(false);
 
-    const onSubmit = useCallback(() => {
+    const onSubmit = useCallback(async() => {
         try {
             setIsLoading(true)
-            console.log(email);
+            const res = await axios.post('/api/passResetEmail', { email })
+            console.log(res.data)
+            toast.success("Check your email")
             setIsSubmit(true);
         }
         catch (err: any) {
