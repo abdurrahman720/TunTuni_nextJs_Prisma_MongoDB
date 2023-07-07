@@ -49,7 +49,7 @@ const ChangePassModal = () => {
         finally {
             setIsLoading(false)
         }
-    },[changePassModal,password,token,router])
+    },[changePassModal,password,token,router,loginModal])
     
     const bodyContent = (
         <div>
