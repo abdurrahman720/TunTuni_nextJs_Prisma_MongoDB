@@ -16,17 +16,22 @@ const PassRestModal = () => {
 
     const onSubmit = useCallback(() => {
         try {
+            setIsLoading(true)
             console.log(email);
             setIsSubmit(true);
         }
         catch (err: any) {
             console.log(err)
         }
+        finally {
+            setIsLoading(false);
+        }
     },[email])
 
     const bodyContent = isSubmit ? (
-        <div className=" flex justify-center">
-            <p className="text-white">We have sent password reset link this <span className="text-orange-500">{email }</span> email. Please check your inbox </p>
+        <div className=" flex flex-col justify-center">
+            <p className="text-white">We have sent password reset link to this email: <span className="text-orange-500">{email}</span> . Please check your inbox </p> <br />
+            <p className="text-neutral-400">The link is valid for 5 minutes from now!</p>
     </div>
     ) : (
             <div>

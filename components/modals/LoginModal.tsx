@@ -6,10 +6,12 @@ import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import usePassResetModal from "@/hooks/usePassResetModal";
 
 const LoginModal = () => {
     const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
+    const passResetModal = usePassResetModal();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -58,6 +60,11 @@ const LoginModal = () => {
                 value={password}
                 disabled={isLoading}
             />
+            <p onClick={() => {
+                 loginModal.onClose()
+                passResetModal.onOpen()
+               
+            }} className="text-neutral-500 hover:underline cursor-pointer">Forgot Password?</p>
         </div>
     )
 

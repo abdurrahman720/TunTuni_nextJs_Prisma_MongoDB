@@ -4,6 +4,7 @@ import {AiOutlineClose} from 'react-icons/ai'
 import Button from "./Button";
 interface ModalProps {
   isOpen?: boolean;
+  isClose?: boolean;
   onClose?: () => void;
   onSubmit?: () => void;
   title?: string;
@@ -14,6 +15,7 @@ interface ModalProps {
 }
 const Modal: React.FC<ModalProps> = ({
   isOpen,
+  isClose,
   onClose,
   onSubmit,
   title,
@@ -26,6 +28,7 @@ const Modal: React.FC<ModalProps> = ({
     if (disabled || !onClose) {
       return;
     }
+   
     onClose();
   }, [disabled, onClose]);
 

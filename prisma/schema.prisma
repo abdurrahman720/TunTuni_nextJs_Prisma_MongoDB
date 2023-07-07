@@ -26,6 +26,8 @@ model User{
   updateddAt DateTime @updatedAt
   followingIds String[] @db.ObjectId
   hasNotification Boolean?
+  passwordResetToken String?
+  passwordResetTokenExpiry DateTime?
 
   posts Post[]
   comments Comment[]
